@@ -1,27 +1,16 @@
 # supermall
 ## 基于b站codewhy老师学习开发
 
-## Project setup
-```
-npm install
+## 指令
 ```
 
-### Compiles and hot-reloads for development
+npm install
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
 npm run build
 ```
-
-### Run your tests
-```
 npm run test
-```
-
-### Lints and fixes files
 ```
 npm run lint
 ```
