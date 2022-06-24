@@ -1,5 +1,5 @@
 # supermall
-# 基于b站王红元老师开发
+## 基于b站codewhy老师学习开发
 
 ## Project setup
 ```
