@@ -8,15 +8,21 @@
       @scroll="contentScroll"
       @pullingUp="loadMore"
     >
-      <home-swiper :banners="banners" />
-      <home-recommend-view :recommends="recommends" />
-      <feature-view />
+      <home-swiper
+        class="relative"
+        :banners="banners"
+        @swiperImageLoad="swiperImageLoad"
+      />
+      <home-recommend-view class="relative" :recommends="recommends" />
+      <feature-view class="relative" :class="{featureview: isTabFixed}" />
       <tab-control
-        class="tab-control"
         :titles="['流行', '新款', '精选']"
         @tabClick="tabClick"
+        ref="tabControl"
+        class="relative"
+        :class="{ fixed: isTabFixed }"
       />
-      <goods-list :goods="showGoods" />
+      <goods-list class="relative" :goods="showGoods" />
     </scroll>
 
     <back-top @click.native="backClick" v-show="isShowBackTop" />
@@ -32,9 +38,11 @@ import TabControl from "components/content/tabControl/TabControl.vue"; //导航
 import GoodsList from "components/content/goods/GoodsList.vue"; //商品数据
 import NavBar from "components/common/navbar/NavBar.vue"; // 顶部导航显示
 import Scroll from "components/common/scroll/Scroll.vue"; //丝滑滚动
-import BackTop from "components/content/backTop/BackTop.vue"; //回到顶部
+
+import {backTopMinix} from 'common/mixin';
 
 import { getHomeData, getHomeGoods } from "network/home"; // 引入网络请求方法
+
 
 export default {
   name: "Home",
@@ -46,20 +54,23 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
-    BackTop,
   },
+  mixins: [backTopMinix], //混入
   data() {
     return {
       banners: [], //保存数据
       recommends: [], //保存数据
       goods: {
         //商品数据
-        pop: { page: 0, list: [] },
-        new: { page: 0, list: [] },
-        sell: { page: 0, list: [] },
+        'pop': { page: 0, list: [] },
+        'new': { page: 0, list: [] },
+        'sell': { page: 0, list: [] },
       },
       currentType: "pop",
-      isShowBackTop: false,
+      tabOffsetTop: 0,
+      tabOffsetHeight: 0,
+      isTabFixed: false,
+      saveY: 0,
     };
   },
   created() {
@@ -77,6 +88,18 @@ export default {
     showGoods() {
       return this.goods[this.currentType].list;
     },
+  },
+
+  // 进入时状态
+  activated() {
+    // 定位离开时位置
+    this.$refs.scroll.scrollTo(0, this.saveY);
+  },
+
+  // 离开时状态
+  deactivated() {
+    // 保存离开时位置
+    this.saveY = this.scrollTop;
   },
   methods: {
     /*
@@ -97,21 +120,29 @@ export default {
       }
     },
 
-    // 回到顶点
-    backClick() {
-      this.$refs.scroll.scrollTo();
-    },
-
-    //  显示/隐藏按钮
     contentScroll(scrollTop) {
-      this.isShowBackTop = scrollTop > 1000;
+      // 显示/隐藏BackTop按钮
+      this.backTopIsShow(scrollTop)
+
+      // 决定tabControl是否吸顶(position: fixed)
+      this.isTabFixed =
+        this.scrollTop > this.tabOffsetTop - this.tabOffsetHeight;
     },
 
     // 上拉加载更多
     loadMore(scrollBottom) {
-      if (scrollBottom < 40) {
-        this.getHomeGoods(this.currentType);
-      }
+      let timer = null;
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (scrollBottom < 40) this.getHomeGoods(this.currentType);
+      });
+    },
+
+    // 监听图片加载高度
+    swiperImageLoad() {
+      // 所以组件都有一个属性$el，用于获取组件中的元素
+      this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop;
+      this.tabOffsetHeight = this.$refs.tabControl.$el.offsetHeight;
     },
 
     /*
@@ -136,10 +167,7 @@ export default {
 </script>
 
 <style scoped>
-#home {
-  margin-top: 44px;
-  margin-bottom: 50px;
-}
+
 .home-nav {
   background-color: var(--color-tint);
   color: #fff;
@@ -150,9 +178,20 @@ export default {
   z-index: 10;
 }
 
-.tab-control {
-  position: sticky;
-  top: 0;
+.relative {
+  position: relative;
+  top: 44px;
+}
+
+.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 44px;
   z-index: 9;
+}
+
+.featureview {
+  margin-top: 40px;
 }
 </style>

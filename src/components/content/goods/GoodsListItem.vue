@@ -1,7 +1,7 @@
 <!-- 商品卡片 -->
 <template>
-  <div class="goods-item">
-    <img :src="goodsItem.show.img" alt="" />
+  <div class="goods-item" @click="itemClick">
+    <img :src="showImage" alt="" />
     <div class="goods-info">
       <p>{{ goodsItem.title }}</p>
       <span class="price">￥{{ goodsItem.price }}</span>
@@ -19,6 +19,20 @@ export default {
       default() {
         return {};
       },
+    },
+  },
+  computed: {
+    showImage() {
+      return (
+        (this.goodsItem.show && this.goodsItem.show.img) || this.goodsItem.image
+      );
+    },
+  },
+  methods: {
+    itemClick() {
+      if (!this.$route.path.indexOf('/home')) {
+        this.$router.push("/detail/" + this.goodsItem.iid);
+      }
     },
   },
 };

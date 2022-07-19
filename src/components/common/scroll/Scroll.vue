@@ -13,12 +13,9 @@ export default {
     return {};
   },
   methods: {
-    scrollTo() {
-      // 回到顶部
-      this.$refs.content.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+    scrollTo(x, y) {
+      // 滚动到相对位置
+      this.$refs.content.scrollTo(x, y);
     },
     getScroll(event) {
       // 滚动条距离顶部的距离scrollTop
