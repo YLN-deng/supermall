@@ -20,9 +20,9 @@
       <goods-list class="bottom" ref="recommend" :goods="recommends" />
     </scroll>
     <!-- 底部菜单 -->
-    <detail-bottom-bar/>
+    <detail-bottom-bar @addCart="addToCart" />
     <!-- 返回顶部 -->
-    <back-top @click.native="backClick" v-show="isShowBackTop"/>
+    <back-top @click.native="backClick" v-show="isShowBackTop" />
   </div>
 </template>
 
@@ -40,6 +40,8 @@ import GoodsList from "components/content/goods/GoodsList.vue";
 import Scroll from "components/common/scroll/Scroll.vue";
 
 import { backTopMinix } from "common/mixin";
+
+import { mapActions } from "vuex";
 
 import {
   getDetail,
@@ -120,6 +122,7 @@ export default {
     });
   },
   methods: {
+    ...mapActions(["addCart"]),
     titleClick(index) {
       // 点击跳转到themeTopYs对应位置
       this.$refs.scroll.scrollTo(0, this.themeTopYs[index]);
@@ -133,7 +136,7 @@ export default {
     },
     detailScroll(scrollTop) {
       // 显示/隐藏BackTop按钮
-      this.backTopIsShow(scrollTop)
+      this.backTopIsShow(scrollTop);
       // 根据themeTopYs的位置，显示相对应的导航文字
       let length = this.themeTopYs.length;
       for (let i = 0; i < length; i++) {
@@ -148,6 +151,35 @@ export default {
           this.$refs.nav.currentIndex = this.currentIndex;
         }
       }
+    },
+    // 将商品加入购物车
+    addToCart() {
+      // 获取购物车需要展示的信息
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.goods.desc;
+      product.price = this.goods.realPrice;
+      product.iid = this.iid;
+
+      // 将商品添加到购物车
+      // 01.actions返回一个promise 02.mapActions
+      // this.$store.commit('addCart',product)
+      // actions用dispatch()
+      // this.$store.dispatch('addCart',product).then(res => {
+      //   console.log(res);
+      // })
+      this.addCart(product).then((res) => {
+        // console.log(res);
+        // this.show = true;
+        // this.message = res;
+
+        // setTimeout(() => {
+        //   this.show = false;
+        //   this.message = "";
+        // },1500);
+        this.$toast.show(res,2000)
+      });
     },
   },
 };

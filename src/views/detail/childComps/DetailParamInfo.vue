@@ -16,7 +16,7 @@
     </table>
 
     <div class="info-img" v-if="paramInfo.image.length !== 0">
-      <img :src="paramInfo.image" alt="">
+      <img :src="'http://' + paramInfo.image" alt="">
     </div>
   </div>
   

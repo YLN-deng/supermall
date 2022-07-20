@@ -10,7 +10,7 @@
       <img
         v-for="(item, index) in detailInfo.detailImage[0].list"
         :key="index"
-        :src="item"
+        :src="'http://' + item"
         @load="imgLoad"
         alt=""
       />
@@ -24,6 +24,9 @@ export default {
   props: {
     detailInfo: {
       type: Object,
+      default() {
+        return {}
+      }
     },
   },
   data() {

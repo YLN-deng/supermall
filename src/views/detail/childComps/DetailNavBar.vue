@@ -7,7 +7,7 @@
       <div slot="center" class="titles">
         <div
           class="titles-item"
-          :class="{ active: index === currentIndex }"
+          :class="{ active: index == currentIndex }"
           v-for="(item, index) in titles"
           :key="index"
           @click="titleClick(index)"
@@ -37,12 +37,12 @@ export default {
     titleClick(index) {
       // 点击切换
       this.currentIndex = index;
-      this.$emit('titleClick',index)
+      this.$emit("titleClick", index);
     },
     backClick() {
       // 返回
-      this.$router.back();
-      //   this.$router.go(-1)
+      // this.$router.back();
+      this.$router.go(-1);
     },
   },
 };

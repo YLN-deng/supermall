@@ -2,7 +2,7 @@
   <div class="detail">
     <swiper class="detail-swiper">
       <swiper-item v-for="item in topImages" :key="item">
-        <img :src="item" alt="" />
+        <img :src="'http://' + item" alt="" />
       </swiper-item>
     </swiper>
   </div>

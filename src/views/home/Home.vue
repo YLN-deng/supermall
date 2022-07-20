@@ -9,12 +9,12 @@
       @pullingUp="loadMore"
     >
       <home-swiper
-        class="relative"
+        class="homeswiper"
         :banners="banners"
         @swiperImageLoad="swiperImageLoad"
       />
-      <home-recommend-view class="relative" :recommends="recommends" />
-      <feature-view class="relative" :class="{featureview: isTabFixed}" />
+      <home-recommend-view :recommends="recommends" />
+      <feature-view :class="{featureview: isTabFixed}" />
       <tab-control
         :titles="['流行', '新款', '精选']"
         @tabClick="tabClick"
@@ -22,7 +22,7 @@
         class="relative"
         :class="{ fixed: isTabFixed }"
       />
-      <goods-list class="relative" :goods="showGoods" />
+      <goods-list class="goodslist" :goods="showGoods" />
     </scroll>
 
     <back-top @click.native="backClick" v-show="isShowBackTop" />
@@ -178,9 +178,12 @@ export default {
   z-index: 10;
 }
 
-.relative {
-  position: relative;
-  top: 44px;
+.homeswiper {
+  margin-top: 44px;
+}
+
+.goodslist {
+  margin-bottom: 50px;
 }
 
 .fixed {

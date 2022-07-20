@@ -23,10 +23,10 @@
 
       <div class="info-imgs">
         <img
-          :key="index"
-          :src="item"
-          alt=""
           v-for="(item, index) in commentInfo.images"
+          :key="index"
+          :src="'http://' + item"
+          alt=""
         />
       </div>
     </div>
