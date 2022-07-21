@@ -7,7 +7,7 @@
       <div slot="center" class="titles">
         <div
           class="titles-item"
-          :class="{ active: index == currentIndex }"
+          :class="{ active: index === currentIndex }"
           v-for="(item, index) in titles"
           :key="index"
           @click="titleClick(index)"

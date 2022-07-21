@@ -60,6 +60,8 @@ export default {
     calcClick() {
         if(!this.cartList.find(item => item.checked)) {
             this.$toast.show('你还没有选择任何商品')
+        }else {
+          this.$toast.show()
         }
     }
   },
@@ -82,7 +84,7 @@ export default {
   display: flex;
   align-items: center;
   margin-left: 10px;
-  width: 60px;
+  width: 80px;
 }
 .check-shop {
   width: 20px;
@@ -95,7 +97,7 @@ export default {
 }
 .calculate {
   text-align: center;
-  width: 90px;
+  width: 105px;
   color: #fff;
   font-weight: bold;
   background-color: rgb(230, 55, 55);

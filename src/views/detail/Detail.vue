@@ -17,7 +17,7 @@
       <!-- 商品评论信息展示 -->
       <detail-comment-info ref="comment" :comment-info="commentInfo" />
       <!-- 推荐商品信息展示 -->
-      <goods-list class="bottom" ref="recommend" :goods="recommends" />
+      <goods-list ref="recommend" :goods="recommends" />
     </scroll>
     <!-- 底部菜单 -->
     <detail-bottom-bar @addCart="addToCart" />
@@ -186,11 +186,13 @@ export default {
 </script>
 
 <style scoped>
+#detail {
+  position: relative;
+  background-color: #fff;
+  z-index: 12;
+}
 .top {
   margin-top: 44px;
 }
 
-.bottom {
-  margin-bottom: 50px;
-}
 </style>

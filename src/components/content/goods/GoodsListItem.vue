@@ -24,15 +24,18 @@ export default {
   computed: {
     showImage() {
       return (
-        (this.goodsItem.show && this.goodsItem.show.img) || this.goodsItem.image
+        (this.goodsItem.show && this.goodsItem.show.img) || this.goodsItem.image ||this.goodsItem.img
       );
     },
   },
   methods: {
     itemClick() {
-      if (!this.$route.path.indexOf('/home')) {
-        this.$router.push("/detail/" + this.goodsItem.iid);
-      }
+      // if (!this.$route.path.indexOf('/home')) {
+      //   this.$router.push("/detail/" + this.goodsItem.iid);
+      // }
+      let goid;
+      goid = this.goodsItem.iid || this.goodsList.iid;
+      this.$router.push("/detail/" + goid);
     },
   },
 };
@@ -43,6 +46,12 @@ export default {
   width: 48%;
   padding-bottom: 40px;
   position: relative;
+}
+.goods-item:nth-last-child(2){
+  margin-bottom: 50px;
+}
+.goods-item:nth-last-child(1){
+  margin-bottom: 50px;
 }
 .goods-item img {
   width: 100%;

@@ -22,7 +22,7 @@
         class="relative"
         :class="{ fixed: isTabFixed }"
       />
-      <goods-list class="goodslist" :goods="showGoods" />
+      <goods-list :goods="showGoods" />
     </scroll>
 
     <back-top @click.native="backClick" v-show="isShowBackTop" />
@@ -180,10 +180,6 @@ export default {
 
 .homeswiper {
   margin-top: 44px;
-}
-
-.goodslist {
-  margin-bottom: 50px;
 }
 
 .fixed {
