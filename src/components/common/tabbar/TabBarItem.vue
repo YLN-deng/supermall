@@ -1,9 +1,9 @@
 <template>
     <div id="tab-bar-item" @click="itemClick">
-        <div v-if="!isActive">
+        <div v-show="!isActive">
             <slot name="item-icon"></slot>
         </div>
-        <div v-else>
+        <div v-show="isActive">
             <slot name="item-icon-active"></slot>
         </div>
         <div :style="activeStyle ">

@@ -24,18 +24,22 @@ export default {
   computed: {
     showImage() {
       return (
-        (this.goodsItem.show && this.goodsItem.show.img) || this.goodsItem.image ||this.goodsItem.img
+        (this.goodsItem.show && this.goodsItem.show.img) ||
+        this.goodsItem.image ||
+        this.goodsItem.img
       );
     },
   },
   methods: {
     itemClick() {
-      // if (!this.$route.path.indexOf('/home')) {
-      //   this.$router.push("/detail/" + this.goodsItem.iid);
-      // }
       let goid;
       goid = this.goodsItem.iid || this.goodsList.iid;
-      this.$router.push("/detail/" + goid);
+      if (
+        !this.$route.path.indexOf("/home") ||
+        !this.$route.path.indexOf("/category")
+      ) {
+        this.$router.push("/detail/" + goid);
+      }
     },
   },
 };
@@ -47,10 +51,10 @@ export default {
   padding-bottom: 40px;
   position: relative;
 }
-.goods-item:nth-last-child(2){
+.goods-item:nth-last-child(2) {
   margin-bottom: 50px;
 }
-.goods-item:nth-last-child(1){
+.goods-item:nth-last-child(1) {
   margin-bottom: 50px;
 }
 .goods-item img {

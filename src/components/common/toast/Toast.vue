@@ -24,7 +24,7 @@ export default {
     };
   },
   methods: {
-    show(message='该功能正在开发中', duration=2000) {
+    show(message='该功能正在开发中...', duration=2000) {
       this.isShow = true;
       this.message = message;
 
