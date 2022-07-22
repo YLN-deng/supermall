@@ -1,6 +1,9 @@
 # supermall
-## 基于b站codewhy老师学习开发
-### 未完善所有功能
+## 基于b站codewhy老师学习开发 （未完善所有功能）  
+
+## 功能完善项目地址  https://github.com/YLN-deng/shopping-mall.git
+   
+
 
 ## 指令
 ```
