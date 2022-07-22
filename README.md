@@ -1,4 +1,5 @@
 # shopping-mall
+### 对你有帮助的话，请点击右上角的star
 
 ## 项目说明:
 * 编写软件： Visual Studio Code
@@ -13,6 +14,14 @@
 * 该项目虽然没用什么插件，但是学到了许多，非常适合练习的一个项目，能有效提高个人技术水平，能提高对vue框架的理解
 
 ## 项目截图
+  
+![主页](http://www.commit.tk/shop-img/zhuye.png)
+![分类](http://www.commit.tk/shop-img/fenlei.png)
+![购物](http://www.commit.tk/shop-img/gouwu.png)
+![购物车](http://www.commit.tk/shop-img/gouwuche.png)
+![详细](http://www.commit.tk/shop-img/xiangxi.png)
+![个人](http://www.commit.tk/shop-img/wode.png)
+
 
 ## Project setup
 ```
