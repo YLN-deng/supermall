@@ -133,23 +133,29 @@ export default {
       this.themeTopYs.push(this.$refs.param.$el.offsetTop - 50);
       this.themeTopYs.push(this.$refs.comment.$el.offsetTop - 50);
       this.themeTopYs.push(this.$refs.recommend.$el.offsetTop - 50);
+      this.themeTopYs.push(Number.MAX_VALUE);
     },
     detailScroll(scrollTop) {
       // 显示/隐藏BackTop按钮
       this.backTopIsShow(scrollTop);
       // 根据themeTopYs的位置，显示相对应的导航文字
       let length = this.themeTopYs.length;
-      for (let i = 0; i < length; i++) {
-        if (
-          this.currentIndex !== i &&
-          ((i < length - 1 &&
-            this.scrollTop >= this.themeTopYs[i] &&
-            this.scrollTop < this.themeTopYs[parseInt(i) + 1]) ||
-            (i === length - 1 && this.scrollTop >= this.themeTopYs[i]))
-        ) {
+      for (let i = 0; i < length - 1; i++) {
+
+        if(this.currentIndex !== i && (scrollTop >= this.themeTopYs[i] && scrollTop < this.themeTopYs[i+1])) {
           this.currentIndex = i;
           this.$refs.nav.currentIndex = this.currentIndex;
         }
+        // if (
+        //   this.currentIndex !== i &&
+        //   ((i < length - 1 &&
+        //     this.scrollTop >= this.themeTopYs[i] &&
+        //     this.scrollTop < this.themeTopYs[parseInt(i) + 1]) ||
+        //     (i === length - 1 && this.scrollTop >= this.themeTopYs[i]))
+        // ) {
+        //   this.currentIndex = i;
+        //   this.$refs.nav.currentIndex = this.currentIndex;
+        // }
       }
     },
     // 将商品加入购物车
