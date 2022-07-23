@@ -1,5 +1,7 @@
 <template>
   <div id="home">
+    <notice />
+
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
 
     <scroll
@@ -38,6 +40,7 @@ import TabControl from "components/content/tabControl/TabControl.vue"; //导航
 import GoodsList from "components/content/goods/GoodsList.vue"; //商品数据
 import NavBar from "components/common/navbar/NavBar.vue"; // 顶部导航显示
 import Scroll from "components/common/scroll/Scroll.vue"; //丝滑滚动
+import Notice from '../../components/content/notice/Notice.vue'; //公告
 
 import {backTopMinix} from 'common/mixin';
 
@@ -54,6 +57,7 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
+    Notice
   },
   mixins: [backTopMinix], //混入
   data() {

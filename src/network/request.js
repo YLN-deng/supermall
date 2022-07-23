@@ -4,7 +4,7 @@ import axios from 'axios'
 export function request(config) {
     // 1.创建axios的实例
     const instance = axios.create({
-        baseURL: '你在想什么:)',
+        baseURL: '',
         timeout: 5000
     })
 
