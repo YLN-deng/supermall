@@ -1,7 +1,7 @@
 <template>
   <div v-if="isShow" id="notice">
     <!-- 标题 -->
-    <div class="context">
+    <div class="msg-context">
         <span>公告</span>
     </div>
     <!-- 信息 -->
@@ -45,7 +45,7 @@ export default {
     transform: translate(-50%,-50%);
     z-index: 999;
 }
-.context {
+.msg-context {
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -54,7 +54,7 @@ export default {
     text-align: center;
     border-radius: 5px 5px 0 0;
 }
-.context span {
+.msg-context span {
     color: #333;
     font-size: 18px;
     font-weight: bold;
@@ -87,11 +87,4 @@ export default {
     color: #333;
 }
 
-.message {
-    margin-top: 10px;
-}
-
-.message span {
-    padding: 19px;
-}
 </style>
