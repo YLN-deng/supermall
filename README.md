@@ -9,7 +9,7 @@
 * 主要页面： 首页、 详情页、 分类、  购物车、 个人中心
 
 ## 完成项目后的总结：
-* 熟悉了 vue、 vuex、 vue-router、 es6、 axios、 axiosminix(混入)、 Vue.extend(组件构造器) 等技术的使用 
+* 熟悉了 vue、 vuex、 vue-router、 es6、 axios、 minix(混入)、 Vue.extend(组件构造器) 等技术的使用 
 * 了解到了 组件封装、模块化开发、工程化思想、项目开发的基本流程、前后端交互流程
 * 该项目非常适合练习，能有效提高个人技术水平，能提高对vue框架的理解
 
